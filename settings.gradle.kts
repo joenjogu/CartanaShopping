@@ -13,4 +13,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "Cartana Shopping"
-include ':app'
+include(":app")
