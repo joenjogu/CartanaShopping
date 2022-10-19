@@ -14,7 +14,7 @@ plugins {
 }
 
 allprojects {
-    apply(plugin = libs.plugins.ktlint.get().toString())
+    apply(plugin = "org.jlleitschuh.gradle.ktlint")
     ktlint {
         android.set(true)
         verbose.set(true)
@@ -26,13 +26,13 @@ allprojects {
 
 subprojects {
 
-    apply(plugin = libs.plugins.detekt.get().toString())
+    apply(plugin = "io.gitlab.arturbosch.detekt")
     detekt {
         config = files("${project.rootDir}/detekt.yml")
         parallel = true
     }
 
-    apply(plugin = libs.plugins.spotless.get().toString())
+    apply(plugin = "com.diffplug.spotless")
     spotless {
         kotlin {
             target("**/*.kt")
