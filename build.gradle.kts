@@ -11,6 +11,7 @@ plugins {
     alias(libs.plugins.spotless)
     alias(libs.plugins.ktlint)
     alias(libs.plugins.detekt)
+    id("com.android.library") version "7.3.1" apply false
 }
 
 allprojects {

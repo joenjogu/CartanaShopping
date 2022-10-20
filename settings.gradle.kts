@@ -14,3 +14,8 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Cartana Shopping"
 include(":app")
+include(":core:theme")
+include(":core:common")
+include(":core:network")
+include(":core:data")
+include(":core:database")
