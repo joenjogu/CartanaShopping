@@ -1,4 +1,4 @@
-package com.joenjogu.cartanashopping.network
+package com.joenjogu.cartanashopping.core.network
 
 import org.junit.Test
 

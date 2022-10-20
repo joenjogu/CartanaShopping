@@ -1,4 +1,4 @@
-package com.joenjogu.cartanashopping.network
+package com.joenjogu.cartanashopping.core.network
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.joenjogu.cartanashopping.network.test", appContext.packageName)
+        assertEquals("com.joenjogu.cartanashopping.core.network.test", appContext.packageName)
     }
 }
