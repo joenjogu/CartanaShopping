@@ -15,6 +15,9 @@
  */
 package com.joenjogu.cartanashopping.core.network.model
 
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
 data class CartProduct(
     val productId: Int,
     val quantity: Int

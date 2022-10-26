@@ -15,6 +15,9 @@
  */
 package com.joenjogu.cartanashopping.core.network.model
 
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
 data class UserAddress(
     val city: String,
     val geolocation: UserGeolocation,

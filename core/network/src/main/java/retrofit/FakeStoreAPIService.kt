@@ -13,25 +13,43 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.joenjogu.cartanashopping.core.network
+package com.joenjogu.cartanashopping.core.network.retrofit
 
 import com.joenjogu.cartanashopping.core.network.com.joenjogu.cartanashopping.core.network.model.Credentials
-import com.joenjogu.cartanashopping.core.network.model.Category
 import com.joenjogu.cartanashopping.core.network.model.Cart
+import com.joenjogu.cartanashopping.core.network.model.Category
 import com.joenjogu.cartanashopping.core.network.model.Product
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.Path
 
-interface CartanaNetworkDataSource {
+interface FakeStoreAPIService {
 
+    @GET("products")
     suspend fun getProducts(): List<Product>
 
-    suspend fun getProductById(id: Int): Product
+    @GET("products/{id}")
+    suspend fun getProductById(
+        @Path("id") id: Int
+    ): Product
 
+    @GET("products/categories")
     suspend fun getCategories(): List<Category>
 
-    suspend fun getUserCart(userId: Int): Cart
+    @GET("carts/user/{userId}")
+    suspend fun getUserCart(
+        @Path("userId") userId: Int
+    ): Cart
 
-    suspend fun cartCheckout(cart: Cart)
+    @POST("carts")
+    suspend fun cartCheckout(
+        @Body cart: Cart
+    )
 
-    suspend fun userLogin(credentials: Credentials): String
+    @POST("auth/login")
+    suspend fun userLogin(
+        @Body credentials: Credentials
+    ): String
 
 }

@@ -39,5 +39,6 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.retrofit.core)
     implementation(libs.okhttp.logging)
+    implementation(libs.moshi)
     ksp(libs.moshi.codegen)
 }
