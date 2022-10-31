@@ -8,6 +8,7 @@ plugins {
 //    alias(libs.plugins.android.application) version("7.3.1") apply false
     alias(libs.plugins.android.library) version ("7.3.1") apply false
     alias(libs.plugins.kotlin.android) version ("1.7.20") apply false
+    alias(libs.plugins.hilt) version ("2.44") apply false
     alias(libs.plugins.spotless)
     alias(libs.plugins.ktlint)
     alias(libs.plugins.detekt)

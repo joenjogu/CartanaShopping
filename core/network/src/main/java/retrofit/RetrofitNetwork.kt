@@ -21,9 +21,11 @@ import com.joenjogu.cartanashopping.core.network.model.Cart
 import com.joenjogu.cartanashopping.core.network.model.Category
 import com.joenjogu.cartanashopping.core.network.model.Product
 
-class RetrofitNetwork : CartanaNetworkDataSource {
+class RetrofitNetwork(private val apiService: FakeStoreAPIService) : CartanaNetworkDataSource {
     override suspend fun getProducts(): List<Product> {
-        TODO("Not yet implemented")
+        withRetry {
+            apiService.getProducts()
+        }
     }
 
     override suspend fun getProductById(id: Int): Product {

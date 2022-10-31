@@ -16,7 +16,9 @@
 package com.joenjogu.cartanashopping
 
 import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
 
+@HiltAndroidApp
 class CartanaApplication: Application() {
-    //TODO: Hilt Setup
+
 }
