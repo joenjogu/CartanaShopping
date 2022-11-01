@@ -33,15 +33,15 @@ interface FakeStoreAPIService {
     @GET("products/{id}")
     suspend fun getProductById(
         @Path("id") id: Int
-    ): Product
+    ): Call<Product>
 
     @GET("products/categories")
-    suspend fun getCategories(): List<Category>
+    suspend fun getCategories(): Call<List<Category>>
 
     @GET("carts/user/{userId}")
     suspend fun getUserCart(
         @Path("userId") userId: Int
-    ): Cart
+    ): Call<Cart>
 
     @POST("carts")
     suspend fun cartCheckout(
@@ -51,6 +51,5 @@ interface FakeStoreAPIService {
     @POST("auth/login")
     suspend fun userLogin(
         @Body credentials: Credentials
-    ): String
-
+    ): Call<String>
 }

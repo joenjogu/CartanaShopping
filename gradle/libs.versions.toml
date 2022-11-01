@@ -33,6 +33,7 @@ androidx-test-junit = { group = "androidx.test.ext", name = "junit", version.ref
 androidx-test-espresso = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidxEspresso" }
 junit4 = { group = "junit", name = "junit", version.ref = "junit4" }
 retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofit-converter-moshi = { group = "com.squareup.retrofit2", name = "converter-moshi", version.ref = "retrofit" }
 okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
 moshi = { group = "com.squareup.moshi", name = "moshi", version.ref = "moshi" }
 moshi-codegen = { group = "com.squareup.moshi", name = "moshi-kotlin-codegen", version.ref = "moshi" }

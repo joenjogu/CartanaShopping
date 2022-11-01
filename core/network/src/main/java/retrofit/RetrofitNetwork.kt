@@ -20,31 +20,45 @@ import com.joenjogu.cartanashopping.core.network.com.joenjogu.cartanashopping.co
 import com.joenjogu.cartanashopping.core.network.model.Cart
 import com.joenjogu.cartanashopping.core.network.model.Category
 import com.joenjogu.cartanashopping.core.network.model.Product
+import javax.inject.Inject
+import retrofit2.awaitResponse
 
-class RetrofitNetwork(private val apiService: FakeStoreAPIService) : CartanaNetworkDataSource {
-    override suspend fun getProducts(): List<Product> {
-        withRetry {
-            apiService.getProducts()
-        }
+class RetrofitNetwork @Inject constructor(
+    private val apiService: FakeStoreAPIService
+) : CartanaNetworkDataSource {
+
+    override suspend fun getProducts(): List<Product> = withRetry {
+        apiService.getProducts()
+            .awaitResponse()
+            .bodyOrThrow()
     }
 
-    override suspend fun getProductById(id: Int): Product {
-        TODO("Not yet implemented")
+    override suspend fun getProductById(id: Int): Product = withRetry {
+        apiService.getProductById(id = id)
+            .awaitResponse()
+            .bodyOrThrow()
     }
 
-    override suspend fun getCategories(): List<Category> {
-        TODO("Not yet implemented")
+    override suspend fun getCategories(): List<Category> = withRetry {
+        apiService.getCategories()
+            .awaitResponse()
+            .bodyOrThrow()
     }
 
-    override suspend fun getUserCart(userId: Int): Cart {
-        TODO("Not yet implemented")
+    override suspend fun getUserCart(userId: Int): Cart = withRetry {
+        apiService.getUserCart(userId = userId)
+            .awaitResponse()
+            .bodyOrThrow()
     }
 
-    override suspend fun cartCheckout(cart: Cart) {
-        TODO("Not yet implemented")
+    override suspend fun cartCheckout(cart: Cart) = withRetry {
+        apiService.cartCheckout(cart = cart)
     }
 
-    override suspend fun userLogin(credentials: Credentials): String {
-        TODO("Not yet implemented")
+    override suspend fun userLogin(credentials: Credentials): String = withRetry {
+        // TODO: Better Network Handling for Auth Token
+        apiService.userLogin(credentials = credentials)
+            .awaitResponse()
+            .bodyOrThrow()
     }
 }

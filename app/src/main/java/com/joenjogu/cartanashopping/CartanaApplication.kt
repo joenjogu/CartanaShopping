@@ -19,6 +19,8 @@ import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class CartanaApplication: Application() {
-
+class CartanaApplication : Application() {
+    override fun onCreate() {
+        super.onCreate()
+    }
 }

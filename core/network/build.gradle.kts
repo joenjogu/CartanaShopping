@@ -41,6 +41,7 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.coroutines.core)
     implementation(libs.retrofit.core)
+    implementation(libs.retrofit.converter.moshi)
     implementation(libs.okhttp.logging)
     implementation(libs.moshi)
     implementation(libs.hilt.android)
