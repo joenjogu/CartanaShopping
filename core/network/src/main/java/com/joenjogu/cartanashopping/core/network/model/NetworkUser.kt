@@ -18,12 +18,13 @@ package com.joenjogu.cartanashopping.core.network.model
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class Product(
-    val category: String,
-    val description: String,
+data class NetworkUser(
     val id: Int,
-    val image: String,
-    val price: Double,
-    val rating: Rating,
-    val title: String
+    val __v: Int,
+    val address: UserAddress,
+    val email: String,
+    val name: UserName,
+    val password: String,
+    val phone: String,
+    val username: String
 )

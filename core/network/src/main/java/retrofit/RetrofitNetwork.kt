@@ -17,9 +17,9 @@ package com.joenjogu.cartanashopping.core.network.retrofit
 
 import com.joenjogu.cartanashopping.core.network.CartanaNetworkDataSource
 import com.joenjogu.cartanashopping.core.network.com.joenjogu.cartanashopping.core.network.model.Credentials
-import com.joenjogu.cartanashopping.core.network.model.Cart
+import com.joenjogu.cartanashopping.core.network.model.NetworkCart
 import com.joenjogu.cartanashopping.core.network.model.Category
-import com.joenjogu.cartanashopping.core.network.model.Product
+import com.joenjogu.cartanashopping.core.network.model.NetworkProduct
 import javax.inject.Inject
 import retrofit2.awaitResponse
 
@@ -27,13 +27,13 @@ class RetrofitNetwork @Inject constructor(
     private val apiService: FakeStoreAPIService
 ) : CartanaNetworkDataSource {
 
-    override suspend fun getProducts(): List<Product> = withRetry {
+    override suspend fun getProducts(): List<NetworkProduct> = withRetry {
         apiService.getProducts()
             .awaitResponse()
             .bodyOrThrow()
     }
 
-    override suspend fun getProductById(id: Int): Product = withRetry {
+    override suspend fun getProductById(id: Int): NetworkProduct = withRetry {
         apiService.getProductById(id = id)
             .awaitResponse()
             .bodyOrThrow()
@@ -45,13 +45,13 @@ class RetrofitNetwork @Inject constructor(
             .bodyOrThrow()
     }
 
-    override suspend fun getUserCart(userId: Int): Cart = withRetry {
+    override suspend fun getUserCart(userId: Int): NetworkCart = withRetry {
         apiService.getUserCart(userId = userId)
             .awaitResponse()
             .bodyOrThrow()
     }
 
-    override suspend fun cartCheckout(cart: Cart) = withRetry {
+    override suspend fun cartCheckout(cart: NetworkCart) = withRetry {
         apiService.cartCheckout(cart = cart)
     }
 

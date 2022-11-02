@@ -13,10 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.joenjogu.cartanashopping.core.model
+package com.joenjogu.cartanashopping.core.database.entities
 
-data class User(
-    val id: Int,
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(
+    tableName = "user"
+)
+data class UserEntity(
+    @PrimaryKey
+    val userId: String,
     val address: String,
     val email: String,
     val password: String,

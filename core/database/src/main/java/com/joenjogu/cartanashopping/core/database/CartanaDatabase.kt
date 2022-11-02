@@ -17,9 +17,10 @@ package com.joenjogu.cartanashopping.core.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import com.joenjogu.cartanashopping.core.database.entities.ProductEntity
 
 @Database(
-    entities = [],
+    entities = [ProductEntity::class],
     version = 1,
     exportSchema = true
 )

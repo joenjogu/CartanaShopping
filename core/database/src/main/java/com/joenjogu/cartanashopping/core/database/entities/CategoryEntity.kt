@@ -13,15 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.joenjogu.cartanashopping.core.network.model
+package com.joenjogu.cartanashopping.core.database.entities
 
-import com.squareup.moshi.JsonClass
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-@JsonClass(generateAdapter = true)
-data class Cart(
-    val __v: Int,
-    val date: String,
+@Entity(
+    tableName = "category"
+)
+data class CategoryEntity(
+    @PrimaryKey(autoGenerate = true)
     val id: Int,
-    val products: List<CartProduct>,
-    val userId: Int
+    val name: String
 )

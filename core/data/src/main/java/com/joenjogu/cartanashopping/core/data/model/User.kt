@@ -13,13 +13,5 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.joenjogu.cartanashopping.core.model
+package com.joenjogu.cartanashopping.core.data.model
 
-data class User(
-    val id: Int,
-    val address: String,
-    val email: String,
-    val password: String,
-    val phone: String,
-    val username: String
-)

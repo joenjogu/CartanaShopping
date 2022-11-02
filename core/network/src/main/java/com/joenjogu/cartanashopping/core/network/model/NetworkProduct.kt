@@ -13,13 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.joenjogu.cartanashopping.core.model
+package com.joenjogu.cartanashopping.core.network.model
 
-data class User(
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
+data class NetworkProduct(
     val id: Int,
-    val address: String,
-    val email: String,
-    val password: String,
-    val phone: String,
-    val username: String
+    val category: String,
+    val description: String,
+    val image: String,
+    val price: Double,
+    val rating: Rating,
+    val title: String
 )

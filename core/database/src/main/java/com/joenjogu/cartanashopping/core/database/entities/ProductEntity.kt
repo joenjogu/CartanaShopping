@@ -15,9 +15,22 @@
  */
 package com.joenjogu.cartanashopping.core.database.entities
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 
 @Entity(
     tableName = "product"
 )
-data class ProductEntity()
+data class ProductEntity(
+    @PrimaryKey
+    val id: String,
+    val category: String,
+    val description: String,
+    val image: String,
+    val price: Double,
+    val rating: Double,
+    @ColumnInfo(name = "rating_count")
+    val ratingCount: Int,
+    val title: String
+)
