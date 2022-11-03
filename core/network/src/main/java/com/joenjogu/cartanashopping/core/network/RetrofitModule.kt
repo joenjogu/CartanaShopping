@@ -30,7 +30,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 @Module
 @InstallIn(SingletonComponent::class)
-object ProvidesFakeStoreApi {
+object RetrofitModule {
     private const val fakeStoreApiBaseURL = "https://fakestoreapi.com/"
 
     @Provides
