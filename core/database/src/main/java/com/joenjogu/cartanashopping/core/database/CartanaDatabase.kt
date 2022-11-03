@@ -17,11 +17,28 @@ package com.joenjogu.cartanashopping.core.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import com.joenjogu.cartanashopping.core.database.dao.CartDao
+import com.joenjogu.cartanashopping.core.database.dao.CategoryDao
+import com.joenjogu.cartanashopping.core.database.dao.ProductDao
+import com.joenjogu.cartanashopping.core.database.dao.UserDao
+import com.joenjogu.cartanashopping.core.database.entities.CartEntity
+import com.joenjogu.cartanashopping.core.database.entities.CategoryEntity
 import com.joenjogu.cartanashopping.core.database.entities.ProductEntity
+import com.joenjogu.cartanashopping.core.database.entities.UserEntity
 
 @Database(
-    entities = [ProductEntity::class],
+    entities = [
+        ProductEntity::class,
+        CartEntity::class,
+        UserEntity::class,
+        CategoryEntity::class
+    ],
     version = 1,
     exportSchema = true
 )
-abstract class CartanaDatabase : RoomDatabase()
+abstract class CartanaDatabase : RoomDatabase() {
+    abstract fun productDao(): ProductDao
+    abstract fun cartDao(): CartDao
+    abstract fun userDao(): UserDao
+    abstract fun categoryDao(): CategoryDao
+}
