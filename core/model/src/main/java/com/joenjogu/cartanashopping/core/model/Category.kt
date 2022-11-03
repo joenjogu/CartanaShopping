@@ -13,22 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.joenjogu.cartanashopping.core.data.model
+package com.joenjogu.cartanashopping.core.model
 
-import com.joenjogu.cartanashopping.core.database.entities.CartEntity
-import com.joenjogu.cartanashopping.core.model.Cart
-import com.joenjogu.cartanashopping.core.network.model.NetworkCart
-
-fun NetworkCart.asCartEntity() = CartEntity(
-    id = id.toString(),
-    productIDs = products.map { it.productId.toString() },
-    userId = userId.toString(),
-    date = date
-)
-
-fun CartEntity.asCart() = Cart(
-    id = id,
-    productIDs = productIDs,
-    userId = userId,
-    date = date
+data class Category(
+    val id: Int,
+    val name: String
 )

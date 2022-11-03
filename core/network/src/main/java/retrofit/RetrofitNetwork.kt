@@ -16,9 +16,9 @@
 package com.joenjogu.cartanashopping.core.network.retrofit
 
 import com.joenjogu.cartanashopping.core.network.CartanaNetworkDataSource
-import com.joenjogu.cartanashopping.core.network.com.joenjogu.cartanashopping.core.network.model.Credentials
+import com.joenjogu.cartanashopping.core.network.model.Credentials
 import com.joenjogu.cartanashopping.core.network.model.NetworkCart
-import com.joenjogu.cartanashopping.core.network.model.Category
+import com.joenjogu.cartanashopping.core.network.model.NetworkCategory
 import com.joenjogu.cartanashopping.core.network.model.NetworkProduct
 import javax.inject.Inject
 import retrofit2.awaitResponse
@@ -39,7 +39,7 @@ class RetrofitNetwork @Inject constructor(
             .bodyOrThrow()
     }
 
-    override suspend fun getCategories(): List<Category> = withRetry {
+    override suspend fun getCategories(): List<NetworkCategory> = withRetry {
         apiService.getCategories()
             .awaitResponse()
             .bodyOrThrow()

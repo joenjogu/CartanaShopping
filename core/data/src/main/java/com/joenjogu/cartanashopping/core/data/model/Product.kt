@@ -15,3 +15,28 @@
  */
 package com.joenjogu.cartanashopping.core.data.model
 
+import com.joenjogu.cartanashopping.core.database.entities.ProductEntity
+import com.joenjogu.cartanashopping.core.model.Product
+import com.joenjogu.cartanashopping.core.network.model.NetworkProduct
+
+fun NetworkProduct.asEntity() = ProductEntity(
+    id = id.toString(),
+    category = category,
+    description = description,
+    image = image,
+    price = price,
+    rating = rating.rate,
+    ratingCount = rating.count,
+    title = title
+)
+
+fun ProductEntity.asProduct() = Product(
+    id = id,
+    category = category,
+    description = description,
+    image = image,
+    price = price,
+    rating = rating,
+    ratingCount = ratingCount,
+    title = title
+)

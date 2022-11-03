@@ -26,7 +26,7 @@ data class CartEntity(
     @PrimaryKey
     val id: String,
     @ColumnInfo(name = "product_ids")
-    val productIds: List<String>,
+    val productIDs: List<String>,
     val userId: String,
     val date: String
 )

@@ -15,9 +15,9 @@
  */
 package com.joenjogu.cartanashopping.core.network.retrofit
 
-import com.joenjogu.cartanashopping.core.network.com.joenjogu.cartanashopping.core.network.model.Credentials
+import com.joenjogu.cartanashopping.core.network.model.Credentials
 import com.joenjogu.cartanashopping.core.network.model.NetworkCart
-import com.joenjogu.cartanashopping.core.network.model.Category
+import com.joenjogu.cartanashopping.core.network.model.NetworkCategory
 import com.joenjogu.cartanashopping.core.network.model.NetworkProduct
 import retrofit2.Call
 import retrofit2.http.Body
@@ -36,7 +36,7 @@ interface FakeStoreAPIService {
     ): Call<NetworkProduct>
 
     @GET("products/categories")
-    suspend fun getCategories(): Call<List<Category>>
+    suspend fun getCategories(): Call<List<NetworkCategory>>
 
     @GET("carts/user/{userId}")
     suspend fun getUserCart(

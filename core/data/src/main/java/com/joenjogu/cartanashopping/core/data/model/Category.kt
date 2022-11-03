@@ -13,11 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.joenjogu.cartanashopping.core.network.model
+package com.joenjogu.cartanashopping.core.data.model
 
-import com.squareup.moshi.JsonClass
+import com.joenjogu.cartanashopping.core.database.entities.CategoryEntity
+import com.joenjogu.cartanashopping.core.network.model.NetworkCategory
 
-@JsonClass(generateAdapter = true)
-data class Category(
-    val name: String
+fun NetworkCategory.asCategoryEntity() = CategoryEntity(
+    id = 1,
+    name = name
 )

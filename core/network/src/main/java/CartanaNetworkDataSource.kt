@@ -15,9 +15,9 @@
  */
 package com.joenjogu.cartanashopping.core.network
 
-import com.joenjogu.cartanashopping.core.network.com.joenjogu.cartanashopping.core.network.model.Credentials
+import com.joenjogu.cartanashopping.core.network.model.Credentials
 import com.joenjogu.cartanashopping.core.network.model.NetworkCart
-import com.joenjogu.cartanashopping.core.network.model.Category
+import com.joenjogu.cartanashopping.core.network.model.NetworkCategory
 import com.joenjogu.cartanashopping.core.network.model.NetworkProduct
 
 interface CartanaNetworkDataSource {
@@ -26,7 +26,7 @@ interface CartanaNetworkDataSource {
 
     suspend fun getProductById(id: Int): NetworkProduct
 
-    suspend fun getCategories(): List<Category>
+    suspend fun getCategories(): List<NetworkCategory>
 
     suspend fun getUserCart(userId: Int): NetworkCart
 

@@ -15,3 +15,29 @@
  */
 package com.joenjogu.cartanashopping.core.data.model
 
+import com.joenjogu.cartanashopping.core.database.entities.UserEntity
+import com.joenjogu.cartanashopping.core.model.User
+import com.joenjogu.cartanashopping.core.network.model.NetworkUser
+import com.joenjogu.cartanashopping.core.network.model.UserAddress
+import com.squareup.moshi.Moshi
+
+private val moshi = Moshi.Builder().build()
+private val userAdapter = moshi.adapter(UserAddress::class.java)
+
+fun NetworkUser.asUserEntity() = UserEntity(
+    userId = id.toString(),
+    address = userAdapter.toJson(address),
+    email = email,
+    password = password,
+    phone = phone,
+    username = username
+)
+
+fun UserEntity.asUser() = User(
+    id = userId,
+    address = address,
+    email = email,
+    password = password,
+    phone = phone,
+    username = username
+)

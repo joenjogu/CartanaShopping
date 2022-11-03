@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.joenjogu.cartanashopping.core.network.com.joenjogu.cartanashopping.core.network.model
+package com.joenjogu.cartanashopping.core.network.model
 
 import com.squareup.moshi.JsonClass
 

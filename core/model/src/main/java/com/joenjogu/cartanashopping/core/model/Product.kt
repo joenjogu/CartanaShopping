@@ -16,7 +16,7 @@
 package com.joenjogu.cartanashopping.core.model
 
 data class Product(
-    val id: Int,
+    val id: String,
     val category: String,
     val description: String,
     val image: String,

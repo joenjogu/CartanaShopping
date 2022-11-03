@@ -20,9 +20,8 @@ import kotlinx.coroutines.delay
 import retrofit2.HttpException
 import retrofit2.Response
 
-inline fun <T> Response<T>.bodyOrThrow(): T {
-    return if (isSuccessful) body()!! else throw HttpException(this)
-}
+inline fun <T> Response<T>.bodyOrThrow(): T =
+    if (isSuccessful) body()!! else throw HttpException(this)
 
 suspend fun <T> withRetry(
     defaultDelay: Long = 100,

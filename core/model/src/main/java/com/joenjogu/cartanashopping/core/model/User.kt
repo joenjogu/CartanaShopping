@@ -16,7 +16,7 @@
 package com.joenjogu.cartanashopping.core.model
 
 data class User(
-    val id: Int,
+    val id: String,
     val address: String,
     val email: String,
     val password: String,
