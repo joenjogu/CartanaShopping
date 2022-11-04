@@ -1,6 +1,8 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    alias(libs.plugins.hilt)
+    kotlin("kapt")
 }
 
 android {
@@ -41,4 +43,6 @@ dependencies {
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.moshi)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
 }
