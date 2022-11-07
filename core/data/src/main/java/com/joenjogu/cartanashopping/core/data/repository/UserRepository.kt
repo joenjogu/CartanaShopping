@@ -15,4 +15,15 @@
  */
 package com.joenjogu.cartanashopping.core.data.repository
 
-interface CartInterface
+import com.joenjogu.cartanashopping.core.model.User
+import kotlinx.coroutines.flow.Flow
+
+interface UserRepository {
+    fun getCurrentUser(): Flow<User>
+
+    fun insertUser(user: User)
+
+    fun updateUser(user: User)
+
+    fun signInUser(credentials: String)
+}

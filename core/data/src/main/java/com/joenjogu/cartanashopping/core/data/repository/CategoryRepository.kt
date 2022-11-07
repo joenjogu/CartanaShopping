@@ -15,4 +15,9 @@
  */
 package com.joenjogu.cartanashopping.core.data.repository
 
-interface ProductInterface
+import com.joenjogu.cartanashopping.core.model.Category
+import kotlinx.coroutines.flow.Flow
+
+interface CategoryRepository {
+    fun getCategories(): Flow<Category>
+}
