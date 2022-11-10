@@ -19,9 +19,9 @@ import com.joenjogu.cartanashopping.core.model.Product
 import kotlinx.coroutines.flow.Flow
 
 interface ProductRepository {
-    fun getProducts(): Flow<List<Product>>
+    suspend fun getProducts(): Flow<List<Product>>
 
-    fun getProductByID(id: String): Flow<Product>
+    suspend fun getProductByID(id: String): Flow<Product>
 
     fun insertProducts(products: List<Product>)
 

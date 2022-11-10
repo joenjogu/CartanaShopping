@@ -15,22 +15,38 @@
  */
 package com.joenjogu.cartanashopping.core.data.repository
 
+import com.joenjogu.cartanashopping.core.data.model.asEntity
+import com.joenjogu.cartanashopping.core.data.model.asProduct
 import com.joenjogu.cartanashopping.core.database.dao.ProductDao
+import com.joenjogu.cartanashopping.core.database.entities.ProductEntity
 import com.joenjogu.cartanashopping.core.model.Product
 import com.joenjogu.cartanashopping.core.network.CartanaNetworkDataSource
+import com.joenjogu.cartanashopping.core.network.retrofit.RetrofitNetwork
 import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
 class ProductRepositoryImpl @Inject constructor(
     private val productDao: ProductDao,
-    private val networkDataSource: CartanaNetworkDataSource
+    private val networkDataSource: RetrofitNetwork
 ) : ProductRepository {
-    override fun getProducts(): Flow<List<Product>> {
-        TODO("Not yet implemented")
+    override suspend fun getProducts(): Flow<List<Product>> {
+        val networkProducts = networkDataSource.getProducts()
+        val productEntities = networkProducts.map { it.asEntity() }
+        productDao.insertProductEntities(productEntities)
+        return productDao.getProductEntities().map {
+            it.map(ProductEntity::asProduct)
+        }
     }
 
-    override fun getProductByID(id: String): Flow<Product> {
-        TODO("Not yet implemented")
+    override suspend fun getProductByID(id: String): Flow<Product> {
+        val networkProduct = networkDataSource.getProductById(
+            id.toIntOrNull() ?: 1
+        )
+        productDao.updateProductEntity(networkProduct.asEntity())
+        return productDao.getProductEntityByID(
+            id
+        ).map { it.asProduct() }
     }
 
     override fun insertProducts(products: List<Product>) {
