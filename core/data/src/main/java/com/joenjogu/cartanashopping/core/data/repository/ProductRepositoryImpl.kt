@@ -20,7 +20,7 @@ import com.joenjogu.cartanashopping.core.data.model.asProduct
 import com.joenjogu.cartanashopping.core.database.dao.ProductDao
 import com.joenjogu.cartanashopping.core.database.entities.ProductEntity
 import com.joenjogu.cartanashopping.core.model.Product
-import com.joenjogu.cartanashopping.core.network.CartanaNetworkDataSource
+import com.joenjogu.cartanashopping.core.network.model.NetworkProduct
 import com.joenjogu.cartanashopping.core.network.retrofit.RetrofitNetwork
 import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
@@ -49,8 +49,8 @@ class ProductRepositoryImpl @Inject constructor(
         ).map { it.asProduct() }
     }
 
-    override fun insertProducts(products: List<Product>) {
-        TODO("Not yet implemented")
+    override suspend fun insertProducts(products: List<NetworkProduct>) {
+        productDao.insertProductEntities(products.map { it.asEntity() })
     }
 
     override fun updateProduct(product: Product) {

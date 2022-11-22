@@ -16,6 +16,7 @@
 package com.joenjogu.cartanashopping.core.data.repository
 
 import com.joenjogu.cartanashopping.core.model.Product
+import com.joenjogu.cartanashopping.core.network.model.NetworkProduct
 import kotlinx.coroutines.flow.Flow
 
 interface ProductRepository {
@@ -23,7 +24,7 @@ interface ProductRepository {
 
     suspend fun getProductByID(id: String): Flow<Product>
 
-    fun insertProducts(products: List<Product>)
+    suspend fun insertProducts(products: List<NetworkProduct>)
 
     fun updateProduct(product: Product)
 }

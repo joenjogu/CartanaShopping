@@ -15,9 +15,10 @@
  */
 package com.joenjogu.cartanashopping.core.data.repository
 
+import com.joenjogu.cartanashopping.core.database.entities.CategoryEntity
 import com.joenjogu.cartanashopping.core.model.Category
 import kotlinx.coroutines.flow.Flow
 
 interface CategoryRepository {
-    fun getCategories(): Flow<Category>
+    suspend fun getCategories(): Flow<List<CategoryEntity>>
 }

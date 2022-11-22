@@ -15,7 +15,9 @@
  */
 package com.joenjogu.cartanashopping.core.data.repository
 
+import com.joenjogu.cartanashopping.core.data.model.asCategoryEntity
 import com.joenjogu.cartanashopping.core.database.dao.CategoryDao
+import com.joenjogu.cartanashopping.core.database.entities.CategoryEntity
 import com.joenjogu.cartanashopping.core.model.Category
 import com.joenjogu.cartanashopping.core.network.CartanaNetworkDataSource
 import javax.inject.Inject
@@ -25,7 +27,11 @@ class CategoryRepositoryImpl @Inject constructor(
     private val categoryDao: CategoryDao,
     private val networkDataSource: CartanaNetworkDataSource
 ) : CategoryRepository {
-    override fun getCategories(): Flow<Category> {
-        TODO("Not yet implemented")
+    override suspend fun getCategories(): Flow<List<CategoryEntity>> {
+        val networkCategories = networkDataSource.getCategories()
+        categoryDao.insertCategoryEntities(
+            networkCategories.map { it.asCategoryEntity() }
+        )
+        return categoryDao.getCategoryEntities()
     }
 }

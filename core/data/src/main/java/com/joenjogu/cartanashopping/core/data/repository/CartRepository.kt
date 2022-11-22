@@ -19,7 +19,7 @@ import com.joenjogu.cartanashopping.core.model.Cart
 import kotlinx.coroutines.flow.Flow
 
 interface CartRepository {
-    fun getUserCart(userID: String): Flow<Cart>
+    suspend fun getUserCart(userID: String): Flow<Cart>
 
     fun cartCheckout(cart: Cart)
 

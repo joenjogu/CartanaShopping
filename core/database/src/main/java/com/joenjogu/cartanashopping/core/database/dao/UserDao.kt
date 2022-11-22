@@ -20,7 +20,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
-import com.joenjogu.cartanashopping.core.database.entities.CartEntity
 import com.joenjogu.cartanashopping.core.database.entities.UserEntity
 import kotlinx.coroutines.flow.Flow
 
@@ -38,5 +37,5 @@ interface UserDao {
         WHERE userId = :userID
     """
     )
-    fun getUserEntityByID(userID: String): Flow<CartEntity>
+    fun getUserEntityByID(userID: String): Flow<UserEntity>
 }

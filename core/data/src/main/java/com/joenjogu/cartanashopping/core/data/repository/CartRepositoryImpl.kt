@@ -15,29 +15,35 @@
  */
 package com.joenjogu.cartanashopping.core.data.repository
 
+import com.joenjogu.cartanashopping.core.data.model.asCart
+import com.joenjogu.cartanashopping.core.data.model.asCartEntity
 import com.joenjogu.cartanashopping.core.database.dao.CartDao
 import com.joenjogu.cartanashopping.core.model.Cart
 import com.joenjogu.cartanashopping.core.network.CartanaNetworkDataSource
 import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
 class CartRepositoryImpl @Inject constructor(
     private val cartDao: CartDao,
     private val networkDataSource: CartanaNetworkDataSource
 ) : CartRepository {
-    override fun getUserCart(userID: String): Flow<Cart> {
-        TODO("Not yet implemented")
+    override suspend fun getUserCart(userID: String): Flow<Cart> {
+        val networkCart = networkDataSource.getUserCart(userID.toInt())
+        cartDao.insertCartEntity(networkCart.asCartEntity())
+        return cartDao.getCartEntityByID(networkCart.id.toString()).map { it.asCart() }
     }
 
     override fun cartCheckout(cart: Cart) {
-        TODO("Not yet implemented")
+        val cartEntity = cartDao.getCartEntityByID(cart.id)
+        networkDataSource.cartCheckout(cartEntity.map { it.asCart() })
     }
 
     override fun insertCart(cart: Cart) {
-        TODO("Not yet implemented")
+        cartDao.insertCartEntity(cart.asEntity())
     }
 
     override fun updateCart(cart: Cart) {
-        TODO("Not yet implemented")
+        cartDao.updateCartEntity(cart.asEntity())
     }
 }

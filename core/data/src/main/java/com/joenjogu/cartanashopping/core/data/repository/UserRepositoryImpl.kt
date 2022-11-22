@@ -26,7 +26,7 @@ class UserRepositoryImpl @Inject constructor(
     private val networkDataSource: CartanaNetworkDataSource
 ) : UserRepository {
     override fun getCurrentUser(): Flow<User> {
-        TODO("Not yet implemented")
+        userDao.getUserEntityByID()
     }
 
     override fun insertUser(user: User) {
@@ -38,6 +38,6 @@ class UserRepositoryImpl @Inject constructor(
     }
 
     override fun signInUser(credentials: String) {
-        TODO("Not yet implemented")
+        networkDataSource.userLogin(credentials)
     }
 }
