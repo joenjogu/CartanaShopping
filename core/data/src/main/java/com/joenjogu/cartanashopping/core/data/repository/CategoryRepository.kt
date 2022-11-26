@@ -19,6 +19,6 @@ import com.joenjogu.cartanashopping.core.database.entities.CategoryEntity
 import com.joenjogu.cartanashopping.core.model.Category
 import kotlinx.coroutines.flow.Flow
 
-interface CategoryRepository {
+interface CategoryRepository : NetworkSyncable{
     suspend fun getCategories(): Flow<List<CategoryEntity>>
 }

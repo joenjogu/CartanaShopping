@@ -31,6 +31,9 @@ interface ProductDao {
     @Update
     suspend fun updateProductEntity(productEntity: ProductEntity)
 
+    @Upsert
+    fun upsertProductEntity(productEntity: List<ProductEntity>)
+
     @Query(value = "SELECT * FROM product")
     fun getProductEntities(): Flow<List<ProductEntity>>
 

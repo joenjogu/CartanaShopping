@@ -29,8 +29,6 @@ class CartRepositoryImpl @Inject constructor(
     private val networkDataSource: CartanaNetworkDataSource
 ) : CartRepository {
     override suspend fun getUserCart(userID: String): Flow<Cart> {
-        val networkCart = networkDataSource.getUserCart(userID.toInt())
-        cartDao.insertCartEntity(networkCart.asCartEntity())
         return cartDao.getCartEntityByID(networkCart.id.toString()).map { it.asCart() }
     }
 

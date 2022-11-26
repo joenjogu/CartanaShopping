@@ -30,30 +30,25 @@ class ProductRepositoryImpl @Inject constructor(
     private val productDao: ProductDao,
     private val networkDataSource: RetrofitNetwork
 ) : ProductRepository {
-    override suspend fun getProducts(): Flow<List<Product>> {
-        val networkProducts = networkDataSource.getProducts()
-        val productEntities = networkProducts.map { it.asEntity() }
-        productDao.insertProductEntities(productEntities)
-        return productDao.getProductEntities().map {
-            it.map(ProductEntity::asProduct)
-        }
+    override suspend fun getProducts(): Flow<List<Product>> =
+        productDao.getProductEntities().map {
+        it.map(ProductEntity::asProduct)
     }
 
     override suspend fun getProductByID(id: String): Flow<Product> {
-        val networkProduct = networkDataSource.getProductById(
-            id.toIntOrNull() ?: 1
-        )
-        productDao.updateProductEntity(networkProduct.asEntity())
         return productDao.getProductEntityByID(
             id
         ).map { it.asProduct() }
     }
 
-    override suspend fun insertProducts(products: List<NetworkProduct>) {
-        productDao.insertProductEntities(products.map { it.asEntity() })
+    override suspend fun networkAndDBSync() {
+        val networkProducts = networkDataSource.getProducts()
+        productDao.upsertProductEntity(
+            networkProducts.map {
+                it.asEntity()
+            }
+        )
     }
 
-    override fun updateProduct(product: Product) {
-        TODO("Not yet implemented")
-    }
+
 }
