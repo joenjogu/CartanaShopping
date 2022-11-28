@@ -27,11 +27,13 @@ class CategoryRepositoryImpl @Inject constructor(
     private val categoryDao: CategoryDao,
     private val networkDataSource: CartanaNetworkDataSource
 ) : CategoryRepository {
-    override suspend fun getCategories(): Flow<List<CategoryEntity>> {
+    override suspend fun getCategories(): Flow<List<CategoryEntity>> =
+        categoryDao.getCategoryEntities()
+
+    override suspend fun networkAndDBSync() {
         val networkCategories = networkDataSource.getCategories()
         categoryDao.insertCategoryEntities(
             networkCategories.map { it.asCategoryEntity() }
         )
-        return categoryDao.getCategoryEntities()
     }
 }

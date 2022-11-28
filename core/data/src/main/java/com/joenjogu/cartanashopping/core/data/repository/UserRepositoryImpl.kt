@@ -29,15 +29,11 @@ class UserRepositoryImpl @Inject constructor(
         userDao.getUserEntityByID()
     }
 
-    override fun insertUser(user: User) {
-        TODO("Not yet implemented")
-    }
-
-    override fun updateUser(user: User) {
-        TODO("Not yet implemented")
-    }
-
     override fun signInUser(credentials: String) {
         networkDataSource.userLogin(credentials)
+    }
+
+    override suspend fun networkAndDBSync() {
+        TODO("Not yet implemented")
     }
 }

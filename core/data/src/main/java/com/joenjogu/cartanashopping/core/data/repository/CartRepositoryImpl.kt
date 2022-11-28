@@ -18,6 +18,7 @@ package com.joenjogu.cartanashopping.core.data.repository
 import com.joenjogu.cartanashopping.core.data.model.asCart
 import com.joenjogu.cartanashopping.core.data.model.asCartEntity
 import com.joenjogu.cartanashopping.core.database.dao.CartDao
+import com.joenjogu.cartanashopping.core.database.entities.CartEntity
 import com.joenjogu.cartanashopping.core.model.Cart
 import com.joenjogu.cartanashopping.core.network.CartanaNetworkDataSource
 import javax.inject.Inject
@@ -28,20 +29,16 @@ class CartRepositoryImpl @Inject constructor(
     private val cartDao: CartDao,
     private val networkDataSource: CartanaNetworkDataSource
 ) : CartRepository {
-    override suspend fun getUserCart(userID: String): Flow<Cart> {
-        return cartDao.getCartEntityByID(networkCart.id.toString()).map { it.asCart() }
-    }
+    override suspend fun getUserCart(userID: String): Flow<Cart> =
+        cartDao.getCartEntityByID(userID).map(CartEntity::asCart)
 
-    override fun cartCheckout(cart: Cart) {
+    override suspend fun cartCheckout(cart: Cart) {
         val cartEntity = cartDao.getCartEntityByID(cart.id)
         networkDataSource.cartCheckout(cartEntity.map { it.asCart() })
     }
 
-    override fun insertCart(cart: Cart) {
-        cartDao.insertCartEntity(cart.asEntity())
-    }
-
-    override fun updateCart(cart: Cart) {
-        cartDao.updateCartEntity(cart.asEntity())
+    override suspend fun networkAndDBSync() {
+        val networkCart = networkDataSource.getUserCart(userID)
+        cartDao.upsertCartEntities(listOf(networkCart.asCartEntity()))
     }
 }

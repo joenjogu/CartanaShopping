@@ -20,6 +20,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
+import androidx.room.Upsert
 import com.joenjogu.cartanashopping.core.database.entities.ProductEntity
 import kotlinx.coroutines.flow.Flow
 
@@ -32,7 +33,7 @@ interface ProductDao {
     suspend fun updateProductEntity(productEntity: ProductEntity)
 
     @Upsert
-    fun upsertProductEntity(productEntity: List<ProductEntity>)
+    fun upsertProductEntity(productEntities: List<ProductEntity>)
 
     @Query(value = "SELECT * FROM product")
     fun getProductEntities(): Flow<List<ProductEntity>>

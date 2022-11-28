@@ -21,6 +21,6 @@ import kotlinx.coroutines.flow.Flow
 interface CartRepository: NetworkSyncable{
     suspend fun getUserCart(userID: String): Flow<Cart>
 
-    fun cartCheckout(cart: Cart)
+    suspend fun cartCheckout(cart: Cart)
 
 }

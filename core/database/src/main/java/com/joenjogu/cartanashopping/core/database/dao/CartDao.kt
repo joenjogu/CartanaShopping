@@ -20,6 +20,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
+import androidx.room.Upsert
 import com.joenjogu.cartanashopping.core.database.entities.CartEntity
 import kotlinx.coroutines.flow.Flow
 
@@ -28,11 +29,11 @@ interface CartDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCartEntities(carts: List<CartEntity>)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertCartEntity(cart: CartEntity)
-
     @Update
     suspend fun updateCartEntity(cart: CartEntity)
+
+    @Upsert
+    suspend fun upsertCartEntities(carts: List<CartEntity>)
 
     @Query(
         value = """

@@ -35,20 +35,13 @@ class ProductRepositoryImpl @Inject constructor(
         it.map(ProductEntity::asProduct)
     }
 
-    override suspend fun getProductByID(id: String): Flow<Product> {
-        return productDao.getProductEntityByID(
-            id
-        ).map { it.asProduct() }
-    }
+    override suspend fun getProductByID(id: String): Flow<Product> =
+        productDao.getProductEntityByID(id).map(ProductEntity::asProduct)
 
     override suspend fun networkAndDBSync() {
         val networkProducts = networkDataSource.getProducts()
         productDao.upsertProductEntity(
-            networkProducts.map {
-                it.asEntity()
-            }
+            networkProducts.map(NetworkProduct::asEntity)
         )
     }
-
-
 }
