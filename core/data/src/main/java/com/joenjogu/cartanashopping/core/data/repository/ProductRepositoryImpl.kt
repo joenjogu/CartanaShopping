@@ -32,8 +32,8 @@ class ProductRepositoryImpl @Inject constructor(
 ) : ProductRepository {
     override suspend fun getProducts(): Flow<List<Product>> =
         productDao.getProductEntities().map {
-        it.map(ProductEntity::asProduct)
-    }
+            it.map(ProductEntity::asProduct)
+        }
 
     override suspend fun getProductByID(id: String): Flow<Product> =
         productDao.getProductEntityByID(id).map(ProductEntity::asProduct)

@@ -16,12 +16,10 @@
 package com.joenjogu.cartanashopping.core.data.repository
 
 import com.joenjogu.cartanashopping.core.model.Product
-import com.joenjogu.cartanashopping.core.network.model.NetworkProduct
 import kotlinx.coroutines.flow.Flow
 
-interface ProductRepository: NetworkSyncable {
+interface ProductRepository : NetworkSyncable {
     suspend fun getProducts(): Flow<List<Product>>
 
     suspend fun getProductByID(id: String): Flow<Product>
-
 }
