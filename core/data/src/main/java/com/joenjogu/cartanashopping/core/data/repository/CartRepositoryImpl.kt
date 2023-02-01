@@ -16,7 +16,6 @@
 package com.joenjogu.cartanashopping.core.data.repository
 
 import com.joenjogu.cartanashopping.core.data.model.asCart
-import com.joenjogu.cartanashopping.core.data.model.asCartEntity
 import com.joenjogu.cartanashopping.core.database.dao.CartDao
 import com.joenjogu.cartanashopping.core.database.entities.CartEntity
 import com.joenjogu.cartanashopping.core.model.Cart
@@ -34,11 +33,13 @@ class CartRepositoryImpl @Inject constructor(
 
     override suspend fun cartCheckout(cart: Cart) {
         val cartEntity = cartDao.getCartEntityByID(cart.id)
-        networkDataSource.cartCheckout(cartEntity.map { it.asCart() })
+        // TODO: figure out modelling NetworkCart
+//        networkDataSource.cartCheckout(cartEntity.map { it.asCart() })
     }
 
     override suspend fun networkAndDBSync() {
-        val networkCart = networkDataSource.getUserCart(userID)
-        cartDao.upsertCartEntities(listOf(networkCart.asCartEntity()))
+        // TODO: figure out how to get userID
+//        val networkCart = networkDataSource.getUserCart(userID)
+//        cartDao.upsertCartEntities(listOf(networkCart.asCartEntity()))
     }
 }

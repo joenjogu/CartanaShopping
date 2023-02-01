@@ -17,6 +17,8 @@ package com.joenjogu.cartanashopping.core.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import com.joenjogu.cartanashopping.core.database.converters.CartEntityConverter
 import com.joenjogu.cartanashopping.core.database.dao.CartDao
 import com.joenjogu.cartanashopping.core.database.dao.CategoryDao
 import com.joenjogu.cartanashopping.core.database.dao.ProductDao
@@ -36,6 +38,7 @@ import com.joenjogu.cartanashopping.core.database.entities.UserEntity
     version = 1,
     exportSchema = true
 )
+@TypeConverters(CartEntityConverter::class)
 abstract class CartanaDatabase : RoomDatabase() {
     abstract fun productDao(): ProductDao
     abstract fun cartDao(): CartDao

@@ -18,8 +18,8 @@ package com.joenjogu.cartanashopping.core.data.repository
 import com.joenjogu.cartanashopping.core.model.User
 import kotlinx.coroutines.flow.Flow
 
-interface UserRepository : NetworkSyncable{
-    fun getCurrentUser(): Flow<User>
+interface UserRepository : NetworkSyncable {
+    fun getCurrentUser(userID: String): Flow<User>
 
-    fun signInUser(credentials: String)
+    suspend fun signInUser(username: String, password: String)
 }

@@ -48,4 +48,5 @@ dependencies {
     ksp(libs.room.compiler)
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
+    implementation(libs.moshi)
 }

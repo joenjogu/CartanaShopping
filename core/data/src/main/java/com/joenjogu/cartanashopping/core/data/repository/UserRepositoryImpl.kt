@@ -15,22 +15,27 @@
  */
 package com.joenjogu.cartanashopping.core.data.repository
 
+import com.joenjogu.cartanashopping.core.data.model.asUser
 import com.joenjogu.cartanashopping.core.database.dao.UserDao
+import com.joenjogu.cartanashopping.core.database.entities.UserEntity
 import com.joenjogu.cartanashopping.core.model.User
 import com.joenjogu.cartanashopping.core.network.CartanaNetworkDataSource
+import com.joenjogu.cartanashopping.core.network.model.Credentials
 import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
 class UserRepositoryImpl @Inject constructor(
     private val userDao: UserDao,
     private val networkDataSource: CartanaNetworkDataSource
 ) : UserRepository {
-    override fun getCurrentUser(): Flow<User> {
-        userDao.getUserEntityByID()
+    override fun getCurrentUser(userID: String): Flow<User> {
+        val userEntity = userDao.getUserEntityByID(userID = userID)
+        return userEntity.map(UserEntity::asUser)
     }
 
-    override fun signInUser(credentials: String) {
-        networkDataSource.userLogin(credentials)
+    override suspend fun signInUser(username: String, password: String) {
+        networkDataSource.userLogin(Credentials(username, password))
     }
 
     override suspend fun networkAndDBSync() {
