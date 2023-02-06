@@ -15,6 +15,14 @@
  */
 package com.joenjogu.cartanashopping.core.data
 
+import com.joenjogu.cartanashopping.core.data.repository.CartRepository
+import com.joenjogu.cartanashopping.core.data.repository.CartRepositoryImpl
+import com.joenjogu.cartanashopping.core.data.repository.CategoryRepository
+import com.joenjogu.cartanashopping.core.data.repository.CategoryRepositoryImpl
+import com.joenjogu.cartanashopping.core.data.repository.ProductRepository
+import com.joenjogu.cartanashopping.core.data.repository.ProductRepositoryImpl
+import com.joenjogu.cartanashopping.core.data.repository.UserRepository
+import com.joenjogu.cartanashopping.core.data.repository.UserRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
