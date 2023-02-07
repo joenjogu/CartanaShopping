@@ -22,9 +22,9 @@ import com.joenjogu.cartanashopping.core.database.dao.CartDao
 import com.joenjogu.cartanashopping.core.database.entities.CartEntity
 import com.joenjogu.cartanashopping.core.model.Cart
 import com.joenjogu.cartanashopping.core.network.CartanaNetworkDataSource
+import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import javax.inject.Inject
 
 class CartRepositoryImpl @Inject constructor(
     private val cartDao: CartDao,
@@ -35,7 +35,7 @@ class CartRepositoryImpl @Inject constructor(
 
     override suspend fun cartCheckout(cart: Cart) {
         val cartEntity = cartDao.getCartEntityByID(cart.id)
-        val networkCartFlow = cartEntity.map{ it.asNetworkCart() }
+        val networkCartFlow = cartEntity.map { it.asNetworkCart() }
         // TODO: review
         networkCartFlow.collect {
             networkDataSource.cartCheckout(it)
