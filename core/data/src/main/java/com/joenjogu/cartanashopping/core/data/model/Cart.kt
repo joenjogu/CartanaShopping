@@ -17,18 +17,32 @@ package com.joenjogu.cartanashopping.core.data.model
 
 import com.joenjogu.cartanashopping.core.database.entities.CartEntity
 import com.joenjogu.cartanashopping.core.model.Cart
+import com.joenjogu.cartanashopping.core.network.model.CartProduct
 import com.joenjogu.cartanashopping.core.network.model.NetworkCart
+import kotlin.random.Random
 
 fun NetworkCart.asCartEntity() = CartEntity(
     id = id.toString(),
-    productIDs = products.map { it.productId.toString() },
+    productIDTOQuantityMap = products.map { mapOf(it.productId.toString() to it.quantity) },
     userId = userId.toString(),
     date = date
 )
 
 fun CartEntity.asCart() = Cart(
     id = id,
-    productIDs = productIDs,
+    productIDTOQuantityMap = productIDTOQuantityMap,
     userId = userId,
     date = date
+)
+
+fun CartEntity.asNetworkCart() = NetworkCart(
+    id = id.toInt(),
+    __v = Random(7).nextInt(),
+    date = date,
+    products = productIDTOQuantityMap.map {
+        it.map { productMap ->
+            CartProduct(productMap.key.toInt(), productMap.value)
+        }
+    }.first(),
+    userId = userId.toInt()
 )

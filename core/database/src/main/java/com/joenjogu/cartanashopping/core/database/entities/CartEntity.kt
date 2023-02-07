@@ -25,8 +25,8 @@ import androidx.room.PrimaryKey
 data class CartEntity(
     @PrimaryKey
     val id: String,
-    @ColumnInfo(name = "product_ids")
-    val productIDs: List<String>,
+    @ColumnInfo(name = "product_ids_and_quantity")
+    val productIDTOQuantityMap: List<Map<String, Int>>,
     val userId: String,
     val date: String
 )

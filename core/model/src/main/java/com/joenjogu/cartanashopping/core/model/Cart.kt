@@ -18,6 +18,6 @@ package com.joenjogu.cartanashopping.core.model
 data class Cart(
     val id: String,
     val date: String,
-    val productIDs: List<String>,
+    val productIDTOQuantityMap: List<Map<String, Int>>,
     val userId: String
 )

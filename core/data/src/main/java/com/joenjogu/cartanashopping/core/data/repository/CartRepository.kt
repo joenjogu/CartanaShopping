@@ -18,8 +18,10 @@ package com.joenjogu.cartanashopping.core.data.repository
 import com.joenjogu.cartanashopping.core.model.Cart
 import kotlinx.coroutines.flow.Flow
 
-interface CartRepository : NetworkSyncable {
+interface CartRepository {
     suspend fun getUserCart(userID: String): Flow<Cart>
 
     suspend fun cartCheckout(cart: Cart)
+
+    suspend fun fetchNetworkUserCart(userID: String)
 }
