@@ -15,6 +15,7 @@
  */
 package com.joenjogu.cartanashopping.core.network.retrofit
 
+import com.joenjogu.cartanashopping.core.network.model.CartCheckout
 import com.joenjogu.cartanashopping.core.network.model.Credentials
 import com.joenjogu.cartanashopping.core.network.model.NetworkCart
 import com.joenjogu.cartanashopping.core.network.model.NetworkCategory
@@ -46,7 +47,7 @@ interface FakeStoreAPIService {
     @POST("carts")
     suspend fun cartCheckout(
         @Body cart: NetworkCart
-    )
+    ): Call<CartCheckout>
 
     @POST("auth/login")
     suspend fun userLogin(

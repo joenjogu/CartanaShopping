@@ -16,6 +16,7 @@
 package com.joenjogu.cartanashopping.core.network.retrofit
 
 import com.joenjogu.cartanashopping.core.network.CartanaNetworkDataSource
+import com.joenjogu.cartanashopping.core.network.model.CartCheckout
 import com.joenjogu.cartanashopping.core.network.model.Credentials
 import com.joenjogu.cartanashopping.core.network.model.NetworkCart
 import com.joenjogu.cartanashopping.core.network.model.NetworkCategory
@@ -51,8 +52,10 @@ class RetrofitNetwork @Inject constructor(
             .bodyOrThrow()
     }
 
-    override suspend fun cartCheckout(cart: NetworkCart) = withRetry {
+    override suspend fun cartCheckout(cart: NetworkCart): CartCheckout = withRetry {
         apiService.cartCheckout(cart = cart)
+            .awaitResponse()
+            .bodyOrThrow()
     }
 
     override suspend fun userLogin(credentials: Credentials): String = withRetry {
